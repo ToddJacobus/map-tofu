@@ -1,16 +1,65 @@
-import { AppShell, Burger, MantineProvider } from '@mantine/core';
+import { 
+  AppShell,
+  Burger,
+  MantineProvider,
+  createTheme,
+} from '@mantine/core';
 import '@mantine/core/styles.css';
 import './App.css';
+import classes from "./mapo-tofu.module.css";
 
 import Map from 'react-map-gl/maplibre';
 
+import LayerMenu, { LayerItem } from './components/layerMenu';
+import React from 'react';
+import Header from './components/header';
 import { useDisclosure } from '@mantine/hooks';
 
+
+const theme = createTheme({
+
+})
+
+
 function App() {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle }] = useDisclosure();
+
+  const [basemaps, setBasemaps] = React.useState<LayerItem[]>([
+    {
+      name: "Outdoors",
+      selected: true,
+    },
+    {
+      name: "Satelite",
+      selected: false,
+    }
+  ]);
+
+  const [rasterLayers, setRasterLayers] = React.useState<LayerItem[]>([
+    {
+      name: "Aspect Layer",
+      selected: true,
+    },
+    {
+      name: "Slope Angle",
+      selected: false,
+    }
+  ]);
+
+  const [featureLayers, setFeatureLayers] = React.useState<LayerItem[]>([
+    {
+      name: "Routes",
+      selected: true,
+    },
+    {
+      name: "Camp Sites",
+      selected: true,
+    }
+  ]);
+
 
   return (
-    <MantineProvider>
+    <MantineProvider theme={theme}>
       <AppShell
         header={{ height: 60}}
         navbar={{
@@ -18,27 +67,61 @@ function App() {
           breakpoint: 'sm',
           collapsed: { mobile: !opened},
         }}
-        padding='md'
+        className={classes.root}
       >
-        <AppShell.Header>
-          <Burger
-            opened={opened}
-            onClick={toggle}
-            // hiddenFrom='sm'
-            size='sm'
-          />
+        <AppShell.Header className={classes.headerContainer}>
+          <div className={classes.navToggle}>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom='sm'
+              size="sm"
+            />  
+          </div>
+          
+          <Header />
         </AppShell.Header>
-        <AppShell.Navbar>Navbar</AppShell.Navbar>
+        <AppShell.Navbar>
+          <div className={classes.catalog} >
+            <LayerMenu 
+              title="Feature Layers"
+              layers={featureLayers}
+              selectMultiple
+              opacitySlider
+              handleSetState={setFeatureLayers}
+            />
+            <LayerMenu 
+              title="Raster Layers"
+              layers={rasterLayers} 
+              selectMultiple
+              opacitySlider
+              handleSetState={setRasterLayers}
+            />
+            <LayerMenu 
+              title="Base Maps"
+              layers={basemaps}
+              handleSetState={setBasemaps}
+            />
+          </div>
+            
+        </AppShell.Navbar>
         <AppShell.Main>
-          <Map
-            initialViewState={{
-              longitude: -121.06,
-              latitude: 47.32,
-              zoom: 6
-            }}
-            style={{width: 400, height: 400}}
-            mapStyle="https://api.maptiler.com/maps/outdoor-v2/style.json?key=1fpqJCS5obaeWPdWYoZ6"
-          />
+          <div className={classes.main}>
+            <Map
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "relative",
+              }}
+              initialViewState={{
+                longitude: -121.06,
+                latitude: 47.32,
+                zoom: 6
+              }}
+              mapStyle="https://api.maptiler.com/maps/outdoor-v2/style.json?key=1fpqJCS5obaeWPdWYoZ6"
+            />  
+          </div>
+          
         </AppShell.Main>
       </AppShell>
 
