@@ -12,6 +12,7 @@
   "dependencies": {
     "@mantine/core": "^7.14.3",
     "@mantine/hooks": "^7.14.3",
+    "@mapbox/mapbox-gl-draw": "^1.5.0",
     "@tabler/icons": "^3.24.0",
     "maplibre-gl": "^4.7.1",
     "react": "^18.3.1",

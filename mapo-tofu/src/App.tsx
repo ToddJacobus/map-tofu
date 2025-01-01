@@ -114,9 +114,9 @@ function App() {
                 position: "relative",
               }}
               initialViewState={{
-                longitude: -121.06,
-                latitude: 47.32,
-                zoom: 6
+                longitude: -121.74,
+                latitude: 46.85,
+                zoom: 11
               }}
               mapStyle="https://api.maptiler.com/maps/outdoor-v2/style.json?key=1fpqJCS5obaeWPdWYoZ6"
             />  
