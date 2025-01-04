@@ -15,7 +15,7 @@ export interface LayerItem {
     selected: boolean,
 }
 
-const LayerMenu = function (props: LayerMenuProps) {
+function LayerMenu(props: LayerMenuProps) {
     const { title, layers, selectMultiple, opacitySlider, handleSetState } = props;
 
     const handleLayerToggle = (layers: LayerItem[], name: string, selected: boolean) => {

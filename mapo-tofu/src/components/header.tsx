@@ -4,7 +4,7 @@ interface HeaderProps {
 
 }
 
-const Header = function (props: HeaderProps) {
+function Header(props: HeaderProps) {
     const {} = props;
 
     return (

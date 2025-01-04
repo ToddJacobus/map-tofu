@@ -14,6 +14,7 @@ import LayerMenu, { LayerItem } from './components/layerMenu';
 import React from 'react';
 import Header from './components/header';
 import { useDisclosure } from '@mantine/hooks';
+import FilterControl from './components/filterControl';
 
 
 const theme = createTheme({
@@ -82,6 +83,11 @@ function App() {
           <Header />
         </AppShell.Header>
         <AppShell.Navbar>
+          <div className={classes.layerControls}>
+            <h3>Filter Slope</h3>
+            <FilterControl />
+          </div>
+          
           <div className={classes.catalog} >
             <LayerMenu 
               title="Feature Layers"

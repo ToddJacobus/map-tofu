@@ -26,6 +26,10 @@
     margin-left: 10px;
 }
 
+.layerControls {
+    margin: 10px;
+}
+
 .catalog {
     margin: 10px;
 }
@@ -50,4 +54,14 @@
     height: 50%;
     width: 100px;
     margin-left: auto;
+}
+
+/* Filter Control */
+
+.filterControlContainer {
+    margin: 10px;
+}
+
+.slopeAngleSlider {
+    width: 120px;
 }
