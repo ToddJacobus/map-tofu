@@ -8,13 +8,15 @@ import '@mantine/core/styles.css';
 import './App.css';
 import classes from "./mapo-tofu.module.css";
 
-import Map from 'react-map-gl/maplibre';
+import Map, { MapInstance } from 'react-map-gl/maplibre';
 
 import LayerMenu, { LayerItem } from './components/layerMenu';
 import React from 'react';
 import Header from './components/header';
 import { useDisclosure } from '@mantine/hooks';
 import FilterControl from './components/filterControl';
+import { DrawControl } from './hooks';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
 
 const theme = createTheme({
@@ -57,6 +59,11 @@ function App() {
       selected: true,
     }
   ]);
+
+  const handleOnMapLoad = (map: MapInstance) => {
+    const draw = new MapboxDraw();
+    map.addControl(draw, 'top-left')
+  }
 
 
   return (
@@ -124,6 +131,7 @@ function App() {
                 latitude: 46.85,
                 zoom: 11
               }}
+              onLoad={(e) => handleOnMapLoad(e.target)}
               mapStyle="https://api.maptiler.com/maps/outdoor-v2/style.json?key=1fpqJCS5obaeWPdWYoZ6"
             />  
           </div>
