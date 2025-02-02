@@ -139,3 +139,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.10.1_1/lib/libgdal.dylib'
+GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.13.0/lib/libgeos.dylib'
+PROJ_LIBRARY_PATH = '/opt/homebrew/Cellar/proj/9.5.1/lib/libproj.dylib'

@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
+from vectortiles.views import MVTView
 
 from api.api.serializers import GroupSerializer, UserSerializer
+from api.api.vector_layers import RouteVectorLayer, SlopeVectorLayer, AspectVectorLayer
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -19,3 +22,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all().order_by('name')
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class RouteTileView(MVTView):
+    layer_classes = [RouteVectorLayer]
+
+class SlopeTileView(MVTView):
+    layer_classes = [SlopeVectorLayer]
+
+class AspectTileView(MVTView):
+    layer_classes = [AspectVectorLayer]
+
