@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api.api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,6 +141,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+# Geospatial Libraries
+
 GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.10.1_1/lib/libgdal.dylib'
 GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.13.0/lib/libgeos.dylib'
 PROJ_LIBRARY_PATH = '/opt/homebrew/Cellar/proj/9.5.1/lib/libproj.dylib'
+VECTOR_TILES_BACKEND="vectortiles.backends.python"

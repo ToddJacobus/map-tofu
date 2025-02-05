@@ -20,10 +20,9 @@ from rest_framework import routers
 
 from api.api.views import (
     UserViewSet, 
-    GroupViewSet, 
-    RouteTileView, 
-    SlopeTileView, 
-    AspectTileView
+    GroupViewSet,
+    poi_list,
+    poi_detail,
 )
 
 router = routers.DefaultRouter()
@@ -34,7 +33,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
-    RouteTileView.get_url(),
-    SlopeTileView.get_url(),
-    AspectTileView.get_url(),
+    path('pois/', poi_list),
+    path('pois/<int:pk>/', poi_detail),
 ]
