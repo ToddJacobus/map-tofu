@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
 
 from api.api.views import (
     UserViewSet, 
@@ -36,3 +37,5 @@ urlpatterns = [
     path('pois/', poi_list),
     path('pois/<int:pk>/', poi_detail),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
